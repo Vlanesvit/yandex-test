@@ -1,28 +1,28 @@
 class Slider {
-	constructor(options) {
+	constructor(selector, options) {
 		const defaultOptions = {
-			selector: null,
 			slidesPerView: 1,
 			spaceBetween: 0,
-			autoplay: false,
-			autoplayDelay: 4000,
+			autoplay: {
+				enabled: false,
+				autoplayDelay: 4000
+			},
 			loop: false,
-			pagination: true,
-			fraction: false,
+			pagination: {
+				enabled: true,
+				type: 'bullet'
+			},
 			breakpoints: {}
 		};
 
 		this.options = { ...defaultOptions, ...options };
 
-		if (!this.options.selector) return;
-
-		this.slider = document.querySelector(this.options.selector);
+		this.slider = document.querySelector(selector);
 		this.sliderWrapper = this.slider.querySelector('.slider-wrapper');
 		this.slides = this.sliderWrapper.querySelectorAll('.slide');
 		this.prevButton = this.slider.querySelector('.prev');
 		this.nextButton = this.slider.querySelector('.next');
 		this.pagination = this.slider.querySelector('.pagination');
-		this.fraction = this.slider.querySelector('.fraction');
 		this.currentIndex = 0;
 		this.autoplayTimer = null;
 
@@ -38,14 +38,13 @@ class Slider {
 		this.prevButton.addEventListener('click', () => this.prevSlide());
 		this.nextButton.addEventListener('click', () => this.nextSlide());
 
-		if (this.options.autoplay) {
+		if (this.options.autoplay.enabled) {
 			this.startAutoplay();
 			this.slider.addEventListener('mouseenter', () => this.stopAutoplay());
 			this.slider.addEventListener('mouseleave', () => this.startAutoplay());
 		}
 
 		window.addEventListener('resize', () => this.applyBreakpointSettings());
-		window.addEventListener('load', () => this.applyBreakpointSettings());
 	}
 
 	applyBreakpointSettings() {
@@ -118,7 +117,7 @@ class Slider {
 
 	startAutoplay() {
 		console.log('Запуск автопрокрутки');
-		this.autoplayTimer = setInterval(() => this.nextSlide(), this.options.autoplayDelay);
+		this.autoplayTimer = setInterval(() => this.nextSlide(), this.options.autoplay.autoplayDelay);
 	}
 
 	stopAutoplay() {
@@ -127,7 +126,7 @@ class Slider {
 	}
 
 	updatePagination() {
-		if (this.options.pagination) {
+		if (this.options.pagination.enabled) {
 			console.log('Обновление пагинации');
 			if (!this.pagination) return;
 			this.pagination.innerHTML = '';
@@ -148,15 +147,18 @@ class Slider {
 				});
 				this.pagination.appendChild(dot);
 			}
+
+			this.pagination.className = 'pagination';
+			this.pagination.classList.add(`pagination-${this.options.pagination.type}`);
 		}
 	}
 
 	updateFraction() {
 		console.log('Обновление фракции');
-		if (this.options.fraction && this.fraction) {
+		if (this.options.pagination.enabled && this.options.pagination.type === 'fraction' && this.pagination) {
 			const totalPages = this.slides.length - this.options.slidesPerView + 1;
 			const currentPage = this.currentIndex + 1;
-			this.fraction.textContent = `${currentPage} / ${totalPages}`;
+			this.pagination.textContent = `${currentPage} / ${totalPages}`;
 		}
 	}
 
@@ -167,29 +169,34 @@ class Slider {
 		clearInterval(this.autoplayTimer);
 		this.slider.classList.remove('slider-init');
 		if (this.pagination) this.pagination.innerHTML = '';
-		if (this.fraction) this.fraction.textContent = '';
 	}
 }
 
-// Пример использования
-const slider1 = new Slider({
-	selector: '#slider1',
+// Пример использования класса Slider
+const slider1 = new Slider('#slider1', {
 	slidesPerView: 1,
 	spaceBetween: 10,
-	pagination: true,
+	pagination: {
+		enabled: true,
+		type: 'bullet'
+	},
 	breakpoints: {
-		991: {
+		991.98: {
 			destroy: true
 		}
 	}
 });
 
-const slider2 = new Slider({
-	selector: '#slider2',
+const slider2 = new Slider('#slider2', {
 	slidesPerView: 3,
 	spaceBetween: 10,
-	fraction: true,
-	autoplay: true,
-	autoplayDelay: 4000,
-	loop: true
+	autoplay: {
+		enabled: true,
+		autoplayDelay: 4000
+	},
+	loop: true,
+	pagination: {
+		enabled: true,
+		type: 'fraction'
+	}
 });
