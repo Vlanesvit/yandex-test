@@ -1,0 +1,16 @@
+.footer {
+	padding: 40px 0px 72px;
+	background-color: var(--block-color);
+
+	// .footer__container
+	&__container {
+	}
+
+	// .footer__content
+	&__content {
+		p {
+			color: var(--font-opacity-color);
+			font-size: 16px;
+		}
+	}
+}

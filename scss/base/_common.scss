@@ -1,0 +1,114 @@
+// TEXT ========================================================================================================================================================
+h1 {
+	font-family: "Merriweather", sans-serif;
+	font-weight: 400;
+	font-size: 60px;
+	// line-height: 66px;
+	line-height: 110%;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-family: "Merriweather", sans-serif;
+	font-weight: 400;
+	font-size: 54px;
+	// line-height: 65px;
+	line-height: 120%;
+	text-transform: uppercase;
+}
+
+h3 {
+	font-family: "Merriweather", sans-serif;
+	font-weight: 400;
+	font-size: 36px;
+	// line-height: 49px;
+	line-height: 135%;
+	text-transform: uppercase;
+}
+
+h4 {
+	font-weight: 600;
+	font-size: 24px;
+	// line-height: 29px;
+	line-height: 120%;
+}
+
+h5 {
+	font-weight: 500;
+	font-size: 20px;
+	// line-height: 24px;
+	line-height: 120%;
+}
+
+h6 {
+	margin-top: 24px;
+	font-weight: 400;
+	font-size: 18px;
+	// line-height: 23px;
+	line-height: 130%;
+}
+
+p {
+	font-weight: 400;
+	font-size: 20px;
+	// line-height: 24px;
+	line-height: 120%;
+}
+
+// BUTTON ========================================================================================================================================================
+.btn {
+	position: relative;
+	overflow: hidden;
+	-webkit-appearance: button;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	transition: all 0.3s ease 0s;
+	border-radius: 66px;
+	padding: 13px 50px;
+	font-weight: 500;
+	font-size: 16px;
+	// line-height: 21px;
+	line-height: 130%;
+	text-align: center;
+	border: 2px solid var(--primary-color);
+
+	&._btn-primary {
+		background-color: var(--primary-color);
+		color: #fff;
+
+		@media (any-hover: hover) {
+			&:hover {
+				border-color: var(--yellow-color);
+				background-color: var(--yellow-color);
+				color: var(--primary-color);
+			}
+		}
+	}
+
+	&._btn-primary-border {
+		color: var(--primary-color);
+		background-color: transparent;
+
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: var(--primary-color);
+				color: #fff;
+			}
+		}
+	}
+
+	&._btn-blue-border {
+		color: var(--blue-color);
+		border-color: var(--blue-color);
+		background-color: transparent;
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fff;
+				background-color: var(--blue-color);
+			}
+		}
+	}
+}

@@ -1,0 +1,157 @@
+.tournament {
+	margin: 80px 0px 0px;
+
+	// .tournament__container
+	&__container {
+	}
+
+	// .tournament__wrapper
+	&__wrapper {
+		display: flex;
+		justify-content: space-between;
+
+		&:not(:last-child) {
+			margin-bottom: 66px;
+		}
+	}
+
+	// .tournament__wrapper-top
+	&__wrapper-top {
+		align-items: center;
+
+		.tournament__img {
+			max-width: 394px;
+			width: 100%;
+		}
+
+		.tournament__desc {
+			margin-right: 64px;
+			max-width: 764px;
+		}
+	}
+
+	// .tournament__wrapper-bottom
+	&__wrapper-bottom {
+		align-items: flex-start;
+
+		.tournament__img {
+			padding: 49.919% 43.279% 0% 0%;
+			margin: -3.3% 0% 0% -2.3%;
+		}
+
+		.tournament__desc {
+			margin-left: 16px;
+			max-width: 704px;
+		}
+	}
+
+	// .tournament__desc
+	&__desc {
+		flex-grow: 1;
+
+		table {
+			margin-top: 60px;
+			table-layout: auto;
+			width: 100%;
+			border-spacing: 0px;
+
+			tbody {
+				tr {
+					td {
+						font-weight: 400;
+						font-size: 20px;
+						// line-height: 24px;
+						line-height: 120%;
+						padding: 15.5px;
+
+						&:first-child {
+							padding-left: 0px;
+							width: 307px;
+							border-right: 2px solid #d0d0d0;
+							color: var(--font-opacity-color);
+						}
+
+						&:last-child {
+							padding-right: 0px;
+							font-weight: 600;
+						}
+
+						.line-through {
+							margin-right: 9px;
+						}
+					}
+
+					&:not(:last-child) {
+						td {
+							border-bottom: 2px solid #d0d0d0;
+						}
+					}
+
+					&:first-child {
+						td {
+							padding-top: 0px;
+						}
+					}
+
+					&:last-child {
+						td {
+							padding-bottom: 0px;
+						}
+					}
+				}
+			}
+		}
+
+		p {
+			margin-top: 48px;
+		}
+	}
+
+	// .tournament__img
+	&__img {
+		position: relative;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__img-layer {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: contain;
+
+		&.layer-mask {
+			z-index: 5;
+			mix-blend-mode: color-burn;
+			background-image: url("../img/tournament/mask.png");
+		}
+
+		&.layer-man {
+			z-index: 2;
+			background-image: url("../img/tournament/man.png");
+		}
+
+		&.layer-hand {
+			z-index: 4;
+			background-image: url("../img/tournament/hand.png");
+		}
+
+		&.layer-statuette {
+			z-index: 3;
+			background-image: url("../img/tournament/statuette.png");
+		}
+
+		&.layer-pattern {
+			z-index: 1;
+			background-image: url("../img/tournament/pattern.png");
+		}
+	}
+}
