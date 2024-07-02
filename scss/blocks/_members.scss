@@ -2,6 +2,11 @@
 	margin-top: 200px;
 	margin-bottom: 140px;
 
+	@media (max-width: 991.98px) {
+		margin-top: 120px;
+		margin-bottom: 100px;
+	}
+
 	// .members__container
 	&__container {
 	}
@@ -13,6 +18,10 @@
 	// .members__slider
 	&__slider {
 		margin-top: 60px;
+
+		@media (max-width: 991.98px) {
+			margin-top: 40px;
+		}
 
 		&.slider-init {
 			@media (min-width: 991.98px) {
@@ -41,6 +50,10 @@
 		overflow: hidden;
 		border-radius: 50%;
 
+		@media (max-width: 991.98px) {
+			padding: 72.86% 72.86% 0px 0px;
+		}
+
 		img {
 			position: absolute;
 			top: 0;
@@ -57,8 +70,13 @@
 		margin-top: 28px;
 
 		p {
+			font-size: 20px;
 			margin-top: 6px;
 			color: var(--font-opacity-color);
+
+			@media (max-width: 991.98px) {
+				margin-top: 8px;
+			}
 		}
 
 		.btn {
@@ -70,9 +88,19 @@
 
 	// .members__control
 	&__control {
-		position: absolute;
-		top: 10px;
-		right: 0;
-		max-width: 151px;
+		@media (min-width: 991.98px) {
+			position: absolute;
+			top: 10px;
+			right: 0;
+			margin-top: 0px !important;
+		}
+
+		@media (max-width: 991.98px) {
+			margin-top: 40px !important;
+		}
+
+		.slider-pagination {
+			margin: 0 14px;
+		}
 	}
 }

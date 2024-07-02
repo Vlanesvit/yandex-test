@@ -5,6 +5,15 @@
 	left: 0;
 	width: 100%;
 	z-index: 9999;
+	transition: background-color 0.3s ease 0s;
+
+	&._header-scroll {
+		background-color: #fff;
+	}
+
+	@media (max-width: 991.98px) {
+		padding: 18px 0px;
+	}
 
 	// .header__container
 	&__container {
@@ -18,6 +27,10 @@
 	&__logo {
 		max-width: 245.17px;
 		width: 100%;
+
+		@media (max-width: 991.98px) {
+			max-width: 213px;
+		}
 
 		a {
 			width: 100%;

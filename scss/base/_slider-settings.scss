@@ -16,10 +16,11 @@
 			flex-shrink: 0;
 		}
 
-		.slider-control {
-			width: 100%;
+		.slider-control { 	
 			display: flex;
 			align-items: center;
+			justify-content: center;
+			margin-top: 28px;
 		}
 
 		.slider-arrow-next,
@@ -30,10 +31,19 @@
 			align-items: center;
 			justify-content: center;
 			transition: all 0.3s ease 0s;
-			width: 44px;
-			height: 44px;
+			min-width: 44px;
+			min-height: 44px;
+			max-width: 44px;
+			max-height: 44px;
 			background-color: #313131;
-			border-radius: 40px;
+			border-radius: 50%;
+
+			@media (max-width: 991.98px) {
+				min-width: 36px;
+				min-height: 36px;
+				max-width: 36px;
+				max-height: 36px;
+			}
 
 			@media (any-hover: hover) {
 				&:hover {
@@ -47,27 +57,30 @@
 		}
 
 		.slider-pagination {
-			flex-grow: 1;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			margin: 0px 14px;
+			margin: 0px 16px;
 		}
 
-		.slider-pagination-bullet .dot {
-			width: 10px;
-			height: 10px;
-			background: var(--gray-color);
-			border-radius: 50%;
-			margin: 0 3px;
-			cursor: pointer;
+		.slider-pagination-bullet {
+			.dot {
+				width: 10px;
+				height: 10px;
+				background-color: var(--gray-color);
+				border-radius: 50%;
+				margin: 0 3px;
+				cursor: pointer;
+				transition: background-color 0.3s ease 0s;
 
-			&.active {
-				background: var(--primary-color);
+				&.active {
+					background-color: var(--primary-color);
+				}
 			}
 		}
 
 		.slider-pagination-fraction {
+			width: 35px;
 			font-weight: 400;
 			font-size: 16px;
 			// line-height: 19px;

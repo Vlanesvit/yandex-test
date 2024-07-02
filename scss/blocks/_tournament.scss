@@ -1,6 +1,14 @@
 .tournament {
 	margin: 80px 0px 0px;
 
+	@media (max-width: 1169.98px) {
+		margin: 60px 0px;
+	}
+
+	@media (max-width: 991.98px) {
+		margin: 50px 0px;
+	}
+
 	// .tournament__container
 	&__container {
 	}
@@ -10,8 +18,26 @@
 		display: flex;
 		justify-content: space-between;
 
+		@media (max-width: 991.98px) {
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
 		&:not(:last-child) {
 			margin-bottom: 66px;
+
+			@media (max-width: 1169.98px) {
+				margin-bottom: 50px;
+			}
+
+			@media (max-width: 991.98px) {
+				margin-bottom: 40px;
+			}
+
+			@media (max-width: 767.98px) {
+				margin-bottom: 34px;
+			}
 		}
 	}
 
@@ -20,28 +46,78 @@
 		align-items: center;
 
 		.tournament__img {
-			max-width: 394px;
 			width: 100%;
+
+			@media (min-width: 991.98px) {
+				max-width: 764px;
+			}
+
+			@media (max-width: 991.98px) {
+				order: 1;
+				margin: 24px 0px;
+				max-width: 500px;
+			}
 		}
 
 		.tournament__desc {
 			margin-right: 64px;
-			max-width: 764px;
+
+			@media (min-width: 991.98px) {
+				max-width: 764px;
+			}
+
+			@media (max-width: 1169.98px) {
+				margin-top: 30px;
+			}
+
+			@media (max-width: 991.98px) {
+				margin-right: 0px;
+				display: contents;
+
+				h3 {
+					display: contents;
+
+					span {
+						order: 2;
+					}
+				}
+			}
 		}
 	}
 
 	// .tournament__wrapper-bottom
 	&__wrapper-bottom {
-		align-items: flex-start;
+		@media (min-width: 991.98px) {
+			align-items: flex-start;
+		}
 
 		.tournament__img {
 			padding: 49.919% 43.279% 0% 0%;
 			margin: -3.3% 0% 0% -2.3%;
+
+			@media (max-width: 767.98px) {
+				padding: 128% 114% 0% 0%;
+				margin: -2% 0% 0% -1%;
+			}
 		}
 
 		.tournament__desc {
 			margin-left: 16px;
-			max-width: 704px;
+
+			@media (min-width: 991.98px) {
+				max-width: 704px;
+			}
+
+			@media (max-width: 991.98px) {
+				margin-left: 0px;
+				margin-top: 6px;
+
+				h3 {
+					br {
+						display: none;
+					}
+				}
+			}
 		}
 	}
 
@@ -49,53 +125,102 @@
 	&__desc {
 		flex-grow: 1;
 
-		table {
+		dl {
 			margin-top: 60px;
-			table-layout: auto;
-			width: 100%;
-			border-spacing: 0px;
 
-			tbody {
-				tr {
-					td {
-						font-weight: 400;
-						font-size: 20px;
-						// line-height: 24px;
-						line-height: 120%;
-						padding: 15.5px;
+			@media (max-width: 991.98px) {
+				margin-top: 44px;
+			}
 
-						&:first-child {
-							padding-left: 0px;
-							width: 307px;
-							border-right: 2px solid #d0d0d0;
-							color: var(--font-opacity-color);
-						}
+			div {
+				display: flex;
+				align-items: center;
 
-						&:last-child {
-							padding-right: 0px;
-							font-weight: 600;
-						}
+				@media (max-width: 991.98px) {
+					padding: 15px 0px;
 
-						.line-through {
-							margin-right: 9px;
+					&:last-child {
+						padding-bottom: 0px;
+					}
+
+					&:first-child {
+						padding-top: 0px;
+					}
+
+					&:nth-child(4) {
+						dd {
+							margin-left: 12px;
 						}
 					}
 
 					&:not(:last-child) {
-						td {
-							border-bottom: 2px solid #d0d0d0;
-						}
+						border-bottom: 2px solid #d0d0d0;
 					}
 
+					&:not(:nth-child(4)) {
+						flex-direction: column;
+						align-items: flex-start;
+
+						dd {
+							margin-top: 12px;
+						}
+					}
+				}
+
+				dt,
+				dd {
+					font-weight: 400;
+					font-size: 20px;
+					// line-height: 24px;
+					line-height: 120%;
+
+					@media (min-width: 991.98px) {
+						padding: 15.5px;
+					}
+
+					.line-through {
+						margin-right: 9px;
+					}
+				}
+
+				dt {
+					color: var(--font-opacity-color);
+
+					@media (min-width: 991.98px) {
+						flex: 0 0 43.5%;
+						padding-left: 0px;
+						border-right: 2px solid #d0d0d0;
+					}
+				}
+
+				dd {
+					font-weight: 600;
+
+					@media (min-width: 991.98px) {
+						flex: 0 0 56.5%;
+						padding-right: 0px;
+					}
+				}
+
+				@media (min-width: 991.98px) {
 					&:first-child {
-						td {
+						dt,
+						dd {
 							padding-top: 0px;
 						}
 					}
 
 					&:last-child {
-						td {
+						dt,
+						dd {
 							padding-bottom: 0px;
+						}
+					}
+
+					&:not(:last-child) {
+						dt,
+						dd {
+							border-bottom: 2px solid #d0d0d0;
 						}
 					}
 				}
@@ -104,6 +229,16 @@
 
 		p {
 			margin-top: 48px;
+
+			@media (max-width: 991.98px) {
+				margin-top: 40px;
+			}
+
+			@media (min-width: 991.98px) {
+				br {
+					display: none;
+				}
+			}
 		}
 	}
 

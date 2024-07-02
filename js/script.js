@@ -56,6 +56,14 @@ class Slider {
 			this.updateFraction();
 			this.updateButtonState();
 		});
+
+		window.addEventListener('load', () => {
+			this.applyBreakpointSettings();
+			this.updateSlider();
+			this.updatePagination();
+			this.updateFraction();
+			this.updateButtonState();
+		});
 	}
 
 	applyBreakpointSettings() {
@@ -244,74 +252,6 @@ const sliderMember = new Slider('.members__slider', {
 	}
 });
 
-
-function marquee() {
-	const marquees = document.querySelectorAll('.marquee');
-
-	marquees.forEach(marquee => {
-		const list = marquee.querySelector('.marquee__list');
-		const items = list.querySelectorAll('.marquee__list li');
-
-		let scrollAmount = 0; // Переменная для отслеживания текущего смещения
-		const speed = 5; // Скорость прокрутки бегущей строки
-
-		// Клонируем элементы для создания бесшовного эффекта
-		items.forEach(item => {
-			const clone = item.cloneNode(true);
-			list.appendChild(clone);
-		});
-
-		function scrollMarquee() {
-			scrollAmount -= speed;
-
-			list.style.transform = `translateX(${scrollAmount}px)`;
-
-			// Проверяем, если первый элемент полностью вышел из видимой области
-			const firstItem = list.firstElementChild;
-			const firstItemWidth = firstItem.getBoundingClientRect().width;
-
-			if (firstItem.getBoundingClientRect().right <= 0) {
-				list.appendChild(firstItem); // Перемещаем первый элемент в конец списка
-
-				// Пересчитываем смещение, чтобы сделать переход плавным
-				scrollAmount += firstItemWidth + parseFloat(getComputedStyle(firstItem).marginLeft);
-
-				// Применяем новое смещение
-				list.style.transform = `translateX(${scrollAmount}px)`;
-			}
-
-			requestAnimationFrame(scrollMarquee); // Рекурсивно вызываем функцию для плавной анимации
-		}
-
-		scrollMarquee(); // Запускаем функцию прокрутки
-	});
-}
-marquee()
-
-/*
-Предмету, который будет двигаться за мышью указать атрибут data-prlx-mouse.
-
-// =========
-Если нужны дополнительные настройки - указать 
-
-Атрибут											Значение по умолчанию
--------------------------------------------------------------------------------------------------------------------
-data-prlx-cx="коэффициент_х"					100							значение больше - меньше процент сдвига
-data-prlx-cy="коэффициент_y"					100							значение больше - меньше процент сдвига
-data-prlx-dxr																		против оси X
-data-prlx-dyr																		против оси Y
-data-prlx-a="скорость_анимации"				50								больше значение - больше скорость
-
-// =========
-Если нужно считывать движение мыши в блоке-родителе - тому родителю указать атрибут data-prlx-mouse-wrapper
-
-Если в параллаксе картинка - расстянуть ее на >100%. 
-Например:
-	width: 130%;
-	height: 130%;
-	top: -15%;
-	left: -15%;
-*/
 class MousePRLX {
 	constructor(props, data = null) {
 		let defaultConfig = {
@@ -384,3 +324,57 @@ class MousePRLX {
 // Запускаем
 new MousePRLX({});
 
+function marquee() {
+	const marquees = document.querySelectorAll('.marquee');
+
+	marquees.forEach(marquee => {
+		const list = marquee.querySelector('.marquee__list');
+		const items = list.querySelectorAll('.marquee__list li');
+
+		let scrollAmount = 0; // Переменная для отслеживания текущего смещения
+		const speed = 4; // Скорость прокрутки бегущей строки
+
+		// Клонируем элементы для создания бесшовного эффекта
+		items.forEach(item => {
+			const clone = item.cloneNode(true);
+			list.appendChild(clone);
+		});
+
+		function scrollMarquee() {
+			scrollAmount -= speed;
+
+			list.style.transform = `translateX(${scrollAmount}px)`;
+
+			// Проверяем, если первый элемент полностью вышел из видимой области
+			const firstItem = list.firstElementChild;
+			const firstItemWidth = firstItem.getBoundingClientRect().width;
+
+			if (firstItem.getBoundingClientRect().right <= 0) {
+				list.appendChild(firstItem); // Перемещаем первый элемент в конец списка
+
+				// Пересчитываем смещение, чтобы сделать переход плавным
+				scrollAmount += firstItemWidth + parseFloat(getComputedStyle(firstItem).marginLeft);
+				list.style.transform = `translateX(${scrollAmount}px)`;
+			}
+
+			requestAnimationFrame(scrollMarquee); // Рекурсивно вызываем функцию для плавной анимации
+		}
+
+		scrollMarquee();
+	});
+}
+marquee()
+
+function headerScroll() {
+	const header = document.querySelector('.header');
+
+	function headerClassAdd() {
+		// 0 - на сколько скролим, чтобы дался класс
+		header.classList.toggle('_header-scroll', window.scrollY > 0);
+	}
+
+	window.addEventListener('scroll', function () {
+		headerClassAdd()
+	})
+}
+headerScroll()
